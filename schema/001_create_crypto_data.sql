@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS crypto_data;
 
 CREATE TABLE crypto_data (
-    id TEXT PRIMARY KEY,
+    id TEXT,
     symbol TEXT NOT NULL CHECK (symbol = LOWER(symbol)),
     name TEXT NOT NULL,
     image TEXT,
@@ -32,5 +32,6 @@ CREATE TABLE crypto_data (
     atl_date TIMESTAMPTZ,
 
     roi JSONB,  -- optionally normalize later
-    last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+    last_updated TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id, last_updated)
 );
