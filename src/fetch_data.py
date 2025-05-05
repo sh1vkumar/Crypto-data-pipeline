@@ -2,7 +2,7 @@ import requests
 # import pyspark.sql as ps
 from dotenv import load_dotenv
 import os
-import psycopg
+import psycopg2
 import logging
 import json
 import time
@@ -85,7 +85,7 @@ def insert_crypto_data(crypto_data):
         return
 
     try:
-        with psycopg.connect(**DB_PARAMS) as conn:
+        with psycopg2.connect(**DB_PARAMS) as conn:
             with conn.cursor() as cur:
                 insert_query = """ 
                     INSERT INTO crypto_data (
